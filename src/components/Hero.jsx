@@ -2,6 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 
+gsap.registerPlugin(SplitText);
+
 const Hero = () => {
 
 	useGSAP(() => {
@@ -25,6 +27,17 @@ const Hero = () => {
 			stagger: 0.05,
 			delay: 1
 		})
+
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: '#hero',
+				start: 'top top',
+				end: 'bottom top',
+				scrub: true
+			}
+		})
+			.to('.right-leaf', { y: 200, ease: 'none' }, 0)
+			.to('.left-leaf', { y: -200, ease: 'none' }, 0)
 
 	}, [])
 
